@@ -1,0 +1,295 @@
+/* ==========================================================================
+   ESTILIZAÇÃO DO CORPO E CONTAINER BASE
+   ========================================================================== */
+body {
+    font-family: var(--font-main);
+    background: var(--bg-main);
+    background-image: var(--bg-gradient);
+    color: var(--text-primary);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* ==========================================================================
+   ESTRUTURA DO CONTEÚDO PRINCIPAL (MOBILE FIRST)
+   ========================================================================== */
+.main-content {
+    flex: 1;
+    padding: 1rem;
+    padding-bottom: 5rem; /* Evita que o conteúdo fique sob a barra inferior mobile */
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Top Bar e Status de Localização */
+.top-bar {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    width: 100%;
+}
+
+.user-location-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-sm);
+    background: rgba(30, 41, 59, 0.5);
+    border: 1px solid var(--glass-border);
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    align-self: flex-start;
+}
+
+.user-location-status i {
+    color: var(--accent);
+    font-size: 1.1rem;
+}
+
+/* Alertas de Erro */
+.error-toast {
+    background: rgba(239, 68, 68, 0.2);
+    border: 1px solid rgba(239, 68, 68, 0.4);
+    color: #fca5a5;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-md);
+    font-size: 0.9rem;
+    backdrop-filter: blur(8px);
+    width: 100%;
+}
+
+/* Configuração Geral de Painéis das Abas */
+.tab-pane {
+    animation: fadeIn var(--transition-normal);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================================================
+   SIDEBAR / NAVEGAÇÃO (MOBILE: MENU INFERIOR FIXO)
+   ========================================================================== */
+.sidebar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 4rem;
+    background: var(--sidebar-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 1px solid var(--glass-border);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+    z-index: 1000;
+}
+
+/* Elementos ocultos no Mobile para otimizar espaço */
+.brand, 
+.sidebar-footer {
+    display: none;
+}
+
+.nav-menu {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Botões de Navegação Customizados */
+.nav-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+    padding: 0.5rem;
+    cursor: pointer;
+    font-family: var(--font-main);
+    font-size: 0.75rem;
+    transition: all var(--transition-fast);
+    border-radius: var(--radius-sm);
+    flex: 1;
+}
+
+.nav-btn i {
+    font-size: 1.3rem;
+    transition: transform var(--transition-fast);
+}
+
+/* Estados de Hover e Active */
+.nav-btn:hover {
+    color: var(--text-primary);
+}
+
+.nav-btn:hover i {
+    transform: translateY(-2px);
+}
+
+.nav-btn.active {
+    color: var(--accent);
+    background: var(--accent-glow);
+}
+
+/* ==========================================================================
+   MEDIA QUERIES (DESKTOP LAYOUT - MIN-WIDTH: 768PX)
+   ========================================================================== */
+@media (min-width: 768px) {
+    .app-container {
+        flex-direction: row;
+    }
+
+    /* Transformação para Barra Lateral Esquerda Definitiva */
+    .sidebar {
+        position: sticky;
+        top: 0;
+        left: 0;
+        width: 260px;
+        height: 100vh;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 2rem 1.5rem;
+        border-top: none;
+        border-right: 1px solid var(--glass-border);
+        background: rgba(15, 23, 42, 0.4);
+    }
+
+    /* Exibição da Identidade Visual e Rodapé */
+    .brand {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        width: 100%;
+        margin-bottom: 2rem;
+    }
+
+    .brand i {
+        font-size: 2rem;
+        color: var(--accent);
+        text-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+    }
+
+    .brand h2 {
+        font-size: 1.4rem;
+        font-weight: 700;
+        letter-spacing: -0.5px;
+        background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .sidebar-footer {
+        display: block;
+        width: 100%;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        padding-top: 1rem;
+    }
+
+    /* Relógio ao Vivo (substitui a antiga assinatura estática) */
+    .live-clock {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.65rem;
+    }
+
+    .clock-emoji {
+        font-size: 1.75rem;
+        line-height: 1;
+        flex-shrink: 0;
+        filter: drop-shadow(0 0 6px var(--accent-glow));
+        transition: transform var(--transition-normal);
+    }
+
+    .clock-info {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        line-height: 1.25;
+    }
+
+    .clock-time {
+        font-family: 'Courier New', monospace;
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        letter-spacing: 1px;
+    }
+
+    .clock-date {
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    /* Menu de Navegação Vertical */
+    .nav-menu {
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: 0.5rem;
+        flex: 1;
+        width: 100%;
+    }
+
+    /* Reestruturação dos Botões para Linha Horizontal */
+    .nav-btn {
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: 1rem;
+        padding: 0.85rem 1rem;
+        font-size: 0.95rem;
+        font-weight: 500;
+        width: 100%;
+        flex: none;
+    }
+
+    .nav-btn i {
+        font-size: 1.4rem;
+    }
+
+    .nav-btn:hover i {
+        transform: translateX(3px);
+    }
+
+    /* Área de Conteúdo Adaptada */
+    .main-content {
+        padding: 2rem 2.5rem;
+        max-height: 100vh;
+        overflow-y: auto;
+    }
+
+    .top-bar {
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2.5rem;
+    }
+
+    .error-toast {
+        width: auto;
+        max-width: 450px;
+    }
+}

@@ -1,0 +1,451 @@
+/* ==========================================================================
+   ESTILIZAÇÃO DE SEÇÕES & HEADERS GERAIS
+   ========================================================================== */
+.section-header {
+    margin-bottom: 1.5rem;
+}
+
+.section-header h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.5px;
+}
+
+.section-header p {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    margin-top: 0.25rem;
+}
+
+/* ==========================================================================
+   COMPONENTES DE FILTROS (PANE MUNDO)
+   ========================================================================== */
+.filter-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 1.25rem;
+    border-radius: var(--radius-lg);
+}
+
+.select-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.select-group label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.select-group select {
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid var(--glass-border);
+    color: var(--text-primary);
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-main);
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+    cursor: pointer;
+    width: 100%;
+}
+
+.select-group select:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px var(--accent-glow);
+}
+
+.select-group select:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+    border-color: var(--glass-border);
+}
+
+.result-card {
+    padding: 2rem;
+    border-radius: var(--radius-lg);
+    text-align: center;
+    min-height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.placeholder-text {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+/* ==========================================================================
+   CARDS DE CLIMA E MÉTRICAS (PANE HOJE)
+   ========================================================================== */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+}
+
+/* Card Principal de Clima */
+.main-weather-card {
+    padding: 2rem;
+    border-radius: var(--radius-lg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 1rem;
+    min-height: 220px;
+}
+
+/* Mini Cards de Métricas */
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+}
+
+.metric-card {
+    padding: 1.5rem 1.25rem;
+    border-radius: var(--radius-md);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 0.5rem;
+    transition: transform var(--transition-fast);
+}
+
+.metric-card:hover {
+    transform: translateY(-2px);
+}
+
+.metric-card i {
+    font-size: 1.8rem;
+    color: var(--accent);
+    text-shadow: 0 0 10px var(--accent-glow);
+}
+
+.metric-card h3 {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.metric-card p {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+/* Container do Gráfico */
+.chart-container {
+    padding: 1.5rem;
+    border-radius: var(--radius-lg);
+}
+
+.chart-container h3 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 1.25rem;
+}
+
+.canvas-wrapper {
+    position: relative;
+    width: 100%;
+    height: 260px;
+}
+
+/* ==========================================================================
+   PREVISÃO SEMANAL E FAVORITOS (PANE PREVISÃO)
+   ========================================================================== */
+.previsao-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+}
+
+.forecast-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.forecast-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.25rem;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: background-color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.forecast-card:hover {
+    background-color: rgba(255, 255, 255, 0.02);
+    border-color: rgba(56, 189, 248, 0.3);
+}
+
+/* Sidebar de Favoritos */
+.favorites-sidebar {
+    padding: 1.5rem;
+    border-radius: var(--radius-lg);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.favorites-sidebar h3 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.favorites-sidebar h3 i {
+    color: #fbbf24;
+}
+
+.fav-input-group {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.fav-input-group input {
+    flex: 1;
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid var(--glass-border);
+    color: var(--text-primary);
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-main);
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color var(--transition-fast);
+}
+
+.fav-input-group input:focus {
+    border-color: var(--accent);
+}
+
+.fav-input-group button {
+    background: var(--accent);
+    border: none;
+    color: var(--bg-main);
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color var(--transition-fast);
+}
+
+.fav-input-group button:hover {
+    background: var(--accent-hover);
+}
+
+.fav-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+.fav-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-sm);
+    font-size: 0.95rem;
+}
+
+/* ==========================================================================
+   RADAR TÉRMICO E LEGENDA (PANE RADAR)
+   ========================================================================== */
+.radar-container {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+#map {
+    width: 100%;
+    height: 350px;
+    z-index: 1;
+}
+
+/* Painel de Legenda do Mapa */
+.map-legend {
+    background: rgba(15, 23, 42, 0.9);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-top: 1px solid var(--glass-border);
+    padding: 1.25rem;
+    z-index: 10;
+    width: 100%;
+}
+
+.map-legend h4 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.map-legend table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.map-legend td {
+    padding: 0.4rem 0;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    vertical-align: middle;
+}
+
+.legend-color {
+    display: inline-block;
+    width: 28px;
+    height: 12px;
+    border-radius: 3px;
+    margin-right: 0.75rem;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Gradiente térmico customizado */
+.color-cold { background: linear-gradient(90deg, #1d4ed8, #3b82f6); }
+.color-mild { background: linear-gradient(90deg, #047857, #10b981); }
+.color-warm { background: linear-gradient(90deg, #b45309, #f59e0b); }
+.color-hot  { background: linear-gradient(90deg, #b91c1c, #ef4444); }
+
+/* ==========================================================================
+   ANIMAÇÃO DE SKELETON SCREEN (LOADING STATES)
+   ========================================================================== */
+.skeleton-loading {
+    position: relative;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.skeleton-loading::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transform: translateX(-100%);
+    background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.06) 20%,
+        rgba(255, 255, 255, 0.13) 60%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    animation: shimmer 1.6s infinite ease-in-out;
+}
+
+@keyframes shimmer {
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* Elementos internos do esqueleto */
+.skeleton-block {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: var(--radius-sm);
+}
+
+.skeleton-text {
+    height: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+    width: 100%;
+}
+
+.skeleton-text.title { width: 55%; height: 1.4rem; }
+.skeleton-text.subtitle { width: 35%; height: 0.85rem; }
+.skeleton-circle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* ==========================================================================
+   MEDIA QUERIES (DESKTOP LAYOUT - MIN-WIDTH: 768PX / 992PX)
+   ========================================================================== */
+@media (min-width: 768px) {
+    .filter-container {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.25rem;
+    }
+
+    #map {
+        height: 500px;
+    }
+
+    .map-legend {
+        position: absolute;
+        bottom: 1.5rem;
+        right: 1.5rem;
+        width: 280px;
+        border: 1px solid var(--glass-border);
+        border-radius: var(--radius-md);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+}
+
+@media (min-width: 992px) {
+    .section-header h1 {
+        font-size: 2.2rem;
+    }
+
+    .dashboard-grid,
+    .previsao-layout {
+        grid-template-columns: 2fr 1fr;
+        gap: 1.75rem;
+    }
+
+    .main-weather-card {
+        height: 100%;
+        min-height: 280px;
+    }
+
+    .metrics-grid {
+        grid-template-columns: 1fr 1fr;
+        height: 100%;
+    }
+
+    .canvas-wrapper {
+        height: 320px;
+    }
+}

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeatherGeo - Dashboard Avançado</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+    <link rel="stylesheet" href="variables.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="components.css">
+</head>
+<body>
+
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="brand">
+                <i class="ri-cloud-windy-line"></i>
+                <h2>WeatherGeo</h2>
+            </div>
+            <nav class="nav-menu">
+                <button class="nav-btn active" data-target="mundo">
+                    <i class="ri-global-line"></i> <span>Mundo</span>
+                </button>
+                <button class="nav-btn" data-target="hoje">
+                    <i class="ri-dashboard-3-line"></i> <span>Hoje</span>
+                </button>
+                <button class="nav-btn" data-target="previsao">
+                    <i class="ri-calendar-2-line"></i> <span>Previsão</span>
+                </button>
+                <button class="nav-btn" data-target="radar">
+                    <i class="ri-map-2-line"></i> <span>Radar</span>
+                </button>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="live-clock" id="live-clock">
+                    <span class="clock-emoji" id="clock-emoji">🌡️</span>
+                    <div class="clock-info">
+                        <span class="clock-time" id="clock-time">--:--</span>
+                        <span class="clock-date" id="clock-date">--/--/----</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-bar">
+                <div id="error-container" class="error-toast hidden"></div>
+                <div class="user-location-status" id="geo-status">
+                    <i class="ri-map-pin-line"></i> <span id="current-city-text">Detectando localização...</span>
+                </div>
+            </header>
+
+            <section id="pane-mundo" class="tab-pane active">
+                <div class="section-header">
+                    <h1>Exploração Global</h1>
+                    <p>Filtre a temperatura de forma hierárquica e precisa.</p>
+                </div>
+                
+                <div class="filter-container glass">
+                    <div class="select-group">
+                        <label for="select-pais">País</label>
+                        <select id="select-pais">
+                            <option value="">Selecione o País</option>
+                        </select>
+                    </div>
+                    <div class="select-group">
+                        <label for="select-estado">Estado</label>
+                        <select id="select-estado" disabled>
+                            <option value="">Selecione o Estado</option>
+                        </select>
+                    </div>
+                    <div class="select-group">
+                        <label for="select-cidade">Cidade</label>
+                        <select id="select-cidade" disabled>
+                            <option value="">Selecione a Cidade</option>
+                        </select>
+                    </div>
+                    <div class="select-group">
+                        <label for="select-bairro">Bairro</label>
+                        <select id="select-bairro" disabled>
+                            <option value="">Selecione o Bairro</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="mundo-result-display" class="result-card glass margin-top">
+                    <p class="placeholder-text">Selecione os filtros acima para exibir os dados climáticos.</p>
+                </div>
+            </section>
+
+            <section id="pane-hoje" class="tab-pane hidden">
+                <div class="section-header">
+                    <h1>Dashboard de Hoje</h1>
+                    <p>Condições em tempo real com base na sua localização.</p>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="main-weather-card glass" id="today-main-card">
+                        </div>
+
+                    <div class="metrics-grid">
+                        <div class="metric-card glass">
+                            <i class="ri-thermometer-line"></i>
+                            <h3>Sensação Térmica</h3>
+                            <p id="metric-feels-like">--</p>
+                        </div>
+                        <div class="metric-card glass">
+                            <i class="ri-showers-line"></i>
+                            <h3>Probabilidade de Chuva</h3>
+                            <p id="metric-pop">--</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chart-container glass margin-top">
+                    <h3>Previsão para as Próximas Horas</h3>
+                    <div class="canvas-wrapper">
+                        <canvas id="hourlyChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <section id="pane-previsao" class="tab-pane hidden">
+                <div class="section-header">
+                    <h1>Planejamento Semanal</h1>
+                    <p>Monitore o clima pelos próximos 7 dias e gerencie locais favoritos.</p>
+                </div>
+
+                <div class="filter-container glass">
+                    <div class="select-group">
+                        <label for="select-pais-previsao">País</label>
+                        <select id="select-pais-previsao">
+                            <option value="">Selecione o País</option>
+                        </select>
+                    </div>
+                    <div class="select-group">
+                        <label for="select-estado-previsao">Estado</label>
+                        <select id="select-estado-previsao" disabled>
+                            <option value="">Selecione o Estado</option>
+                        </select>
+                    </div>
+                    <div class="select-group">
+                        <label for="select-cidade-previsao">Cidade</label>
+                        <select id="select-cidade-previsao" disabled>
+                            <option value="">Selecione a Cidade</option>
+                        </select>
+                    </div>
+                    <div class="select-group">
+                        <label for="select-bairro-previsao">Bairro</label>
+                        <select id="select-bairro-previsao" disabled>
+                            <option value="">Selecione o Bairro</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="previsao-layout">
+                    <div class="forecast-list" id="weekly-forecast-container">
+                        </div>
+                    
+                    <div class="favorites-sidebar glass">
+                        <h3><i class="ri-star-line"></i> Locais Salvos</h3>
+                        <div class="fav-input-group">
+                            <input type="text" id="input-fav" placeholder="Adicionar cidade...">
+                            <button id="btn-add-fav"><i class="ri-add-line"></i></button>
+                        </div>
+                        <ul id="favorites-list" class="fav-list">
+                            </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="pane-radar" class="tab-pane hidden">
+                <div class="section-header">
+                    <h1>Radar Térmico Interativo</h1>
+                    <p>Analise visualmente as variações de temperatura na região.</p>
+                </div>
+
+                <div class="radar-container glass">
+                    <div id="map"></div>
+                    
+                    <div class="map-legend">
+                        <h4>Legenda de Temperatura</h4>
+                        <table>
+                            <tr><td><span class="legend-color color-cold"></span></td><td>&lt; 10°C (Frio Intenso)</td></tr>
+                            <tr><td><span class="legend-color color-mild"></span></td><td>15°C - 22°C (Agradável)</td></tr>
+                            <tr><td><span class="legend-color color-warm"></span></td><td>23°C - 30°C (Quente)</td></tr>
+                            <tr><td><span class="legend-color color-hot"></span></td><td>&gt; 35°C (Calor Extremo)</td></tr>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <script type="module" src="app.js"></script>
+</body>
+</html>
