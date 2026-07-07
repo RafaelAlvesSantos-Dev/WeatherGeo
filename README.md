@@ -1,6 +1,16 @@
 # 🌤️ WeatherGeo — Dashboard Climático Avançado
 
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/javascript-%23F7DF1E.svg?style=for-the-badge&logo=javascript&logoColor=black)
+![LocalStorage](https://img.shields.io/badge/LocalStorage-blue?style=for-the-badge&logo=google-chrome&logoColor=white)
+
 O **WeatherGeo** é um ecossistema SPA (*Single Page Application*) focado no monitoramento e análise das condições climáticas globais e locais. Unindo uma interface moderna baseada em **Glassmorphic Design** com uma arquitetura assíncrona robusta, o app integra múltiplas APIs REST para fornecer dados hierárquicos precisos que vão desde o nível de países até bairros específicos, incluindo um radar térmico interativo.
+
+---
+
+## 🔗 Demonstração ao Vivo
+▶️ [Clique aqui para testar a aplicação em tempo real](https://rafaelalvessantos-dev.github.io/WeatherGeo/)
 
 ---
 
